@@ -1,0 +1,37 @@
+1. Устанавливаем node.js, npm, vue-cli
+2. Создаем новый проект с помощью vue-cli
+- vue create <project_name>
+- Manually select features
+- Выбираем Babel, Router, Vuex, CSS Pre-processor, Linter / Formatter, Progressive Web App (PWA) Support, Unit Testing, E2E testing
+
+    - Use history mode for router? Yes
+    - Pick a CSS pre-processor -> Sass/SCSS (with node-sass)
+    - Pick a linter / formatter config -> ESLint + Standard config
+    - Pick additional lint features -> Lint on save
+    - Pick a unit testing solution -> Mocha + Chai
+    - Pick a E2E testing solution -> Nightwatch
+    -  Where do you prefer placing config for Babel, PostCSS, ESLint, etc.? -> In package.json
+    - Save this as a preset for future projects? -> No
+3. Структура проекта
+Переносим файлы router.js и store.js в отдельные папки
+Создаем папку common, в которой будут лежать фильтры, миксины и пр. вещи, которые будут использоваться во всем проекте
+В папке views будут лежать компоненты на которые будет ссылаться vue-router
+В папке components остальные компоненты
+
+4. Устанавливаем бутстрап https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e
+npm install bootstrap --save
+Импортируем его глобально для всего проекта - в компоненте App.vue
+<style lang="scss">
+    @import '../node_modules/bootstrap/scss/bootstrap.scss';
+</style>
+Создаем папку src/styles и добавляем туда файл custom-bootstrap.scss для кастомизации бутстрапа
+Его тоже импортируем в App.vue
+<style lang="scss">
+    @import './styles/custom-bootstrap.scss';
+    @import '../node_modules/bootstrap/scss/bootstrap.scss';
+</style>
+
+5. Создаем предварительную структуру страниц приложения - шаблоны страниц добавляем в /src/views, маршрутизацию добавляем в /src/router/router.js
+Маршрутизацию реализуем с помощью Vue Router - официальной библиотеки маршрутизации для vue.js
+Vue Router нужен для отображения компонентов по заданным маршрутам. Во вью нет понятия страница, тк это SPA и все приложение
+представляет собой набор компонентов

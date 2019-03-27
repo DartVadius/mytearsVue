@@ -1,5 +1,7 @@
 {
   "name": "mytearsvue",
+  "author": "DartVadius <vad261275@gmail.com>",
+  "description": "Frontend browser application for MyTears REST API",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,8 +12,11 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "axios": "^0.18.0",
+    "bootstrap": "^4.3.1",
     "register-service-worker": "^1.6.2",
     "vue": "^2.6.6",
+    "vue-axios": "^2.1.4",
     "vue-router": "^3.0.1",
     "vuex": "^3.0.1"
   },
