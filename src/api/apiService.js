@@ -2,29 +2,14 @@ import Vue from 'vue'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 
-// запрос для авторизации http://127.0.0.1:8003/
-// axios.defaults.baseURL = process.env.ROOT_API
-// axios.defaults.baseURL = 'https://localhost:8080/'
-
-let HTTP = axios.create({
-  headers: {
-    'Content-Type': 'application/json',
-    'Cache-Control': 'no-cache',
-    'Accept': 'application/json'
-  }
-})
-
 export const ApiService = {
   init () {
     Vue.use(VueAxios, axios)
-    // todo вынести в .env
-    Vue.axios.defaults.baseURL = 'https://localhost:8080/'
+    Vue.axios.defaults.baseURL = process.env.VUE_APP_baseUrl
+    Vue.axios.defaults.headers.common['Content-Type'] = 'application/json'
+    Vue.axios.defaults.headers.common['Cache-Control'] = 'no-cache'
+    Vue.axios.defaults.headers.common['Accept'] = 'application/json'
   },
-  // setHeader () {
-  //   Vue.axios.defaults.headers.common['Content-Type'] = 'application/json'
-  //   Vue.axios.defaults.headers.common['Cache-Control'] = 'no-cache'
-  //   Vue.axios.defaults.headers.common['Accept'] = 'application/json'
-  // },
   query (resource, params) {
     return Vue.axios.get(resource, params).catch(error => {
       throw new Error(`ApiService ${error}`)
@@ -36,7 +21,7 @@ export const ApiService = {
     })
   },
   post (resource, params) {
-    return HTTP.post(`${resource}`, params).catch(error => {
+    return Vue.axios.post(`${resource}`, params).catch(error => {
       throw new Error(`ApiService ${error}`)
     })
   },
@@ -59,14 +44,10 @@ export const ApiService = {
 
 export const Auth = {
   login (credentials) {
-    // ApiService.setHeader()
-    // todo вынести в .env
-    credentials['grant_type'] = 'password'
-    credentials['client_id'] = 2
-    credentials['client_secret'] = 'feQ1gp8rZXZidiPIPTkL0wnl863Osy2R7nbGdE0N'
-    console.log(credentials)
+    credentials['grant_type'] = process.env.VUE_APP_grant_type
+    credentials['client_id'] = process.env.VUE_APP_client_id
+    credentials['client_secret'] = process.env.VUE_APP_client_secret
     return ApiService.post('/oauth/token/', credentials).then(response => {
-      console.log(response)
       Vue.axios.defaults.headers.common['Authorization'] = 'Bearer ' + response.data['access_token']
       return response.data
     })

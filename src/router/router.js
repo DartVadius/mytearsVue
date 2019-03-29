@@ -13,37 +13,37 @@ export default new Router({
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      component: () => import(/* webpackChunkName: "about" */ '@/views/auth/Register')
+      component: () => import(/* webpackChunkName: "register" */ '@/views/auth/Register')
     },
     {
       path: '/login',
       name: 'login',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/auth/Login')
+      component: () => import(/* webpackChunkName: "login" */ '@/views/auth/Login')
     },
     {
       path: '/',
       name: 'posts',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/PostsFeed')
+      component: () => import(/* webpackChunkName: "posts" */ '@/views/PostsFeed')
     },
     {
       path: '/post/:post_slug',
       name: 'post',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/Post')
+      component: () => import(/* webpackChunkName: "post" */ '@/views/Post')
     },
     {
       path: '/category/:category_slug',
       name: 'category',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/PostsFeed')
+      component: () => import(/* webpackChunkName: "posts" */ '@/views/PostsFeed')
     },
     {
       path: '/tag/:tag_slug',
       name: 'tag',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/PostsFeed')
+      component: () => import(/* webpackChunkName: "posts" */ '@/views/PostsFeed')
     },
     {
-      path: '/user',
-      name: 'users',
-      component: () => import(/* webpackChunkName: "about" */ '@/views/PostsFeed')
+      path: '/admin/user',
+      name: 'userProfile',
+      component: () => import(/* webpackChunkName: "userProfile" */ '@/views/admin/users/UserProfile')
     }
   ]
 })

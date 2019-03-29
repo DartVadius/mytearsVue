@@ -35,3 +35,9 @@ npm install bootstrap --save
 Маршрутизацию реализуем с помощью Vue Router - официальной библиотеки маршрутизации для vue.js
 Vue Router нужен для отображения компонентов по заданным маршрутам. Во вью нет понятия страница, тк это SPA и все приложение
 представляет собой набор компонентов
+
+6. Решаем проблему https соединения на локалхосте - добавляем в корень файл vue.config.js и конфигурируем там dev server
+https://stackoverflow.com/questions/45807049/how-to-run-vue-js-dev-serve-with-https
+
+7. Выносим переменные окружения в .env и .env.local
+https://cli.vuejs.org/ru/guide/mode-and-env.html

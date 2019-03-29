@@ -25,16 +25,14 @@ const getters = {
 const actions = {
   [LOGIN] ({ commit }, credentials) {
     return new Promise(resolve => {
-      Auth.login(credentials)
-        .then(({ data }) => {
-          commit(SET_AUTH)
-          localStorage.setItem('access_token', data['access_token'])
-          localStorage.setItem('refresh_token', data['refresh_token'])
-          resolve(data)
-        })
-        .catch(({ response }) => {
-          commit(SET_ERROR, response.data.errors)
-        })
+      Auth.login(credentials).then(({ data }) => {
+        commit(SET_AUTH)
+        localStorage.setItem('access_token', data['access_token'])
+        localStorage.setItem('refresh_token', data['refresh_token'])
+        resolve(data)
+      }).catch(({ response }) => {
+        commit(SET_ERROR, response.data.errors)
+      })
     })
   },
   [LOGOUT] ({ commit }) {
