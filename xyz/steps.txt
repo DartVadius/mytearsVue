@@ -20,16 +20,26 @@
 
 4. Устанавливаем бутстрап https://medium.com/@BjornKrols/integrating-and-customising-bootstrap-4-in-vue-js-cbc29ba7688e
 npm install bootstrap --save
-Импортируем его глобально для всего проекта - в компоненте App.vue
+Импортируем его глобально для всего проекта - в компоненте Header.vue
 <style lang="scss">
-    @import '../node_modules/bootstrap/scss/bootstrap.scss';
+    @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 </style>
 Создаем папку src/styles и добавляем туда файл custom-bootstrap.scss для кастомизации бутстрапа
-Его тоже импортируем в App.vue
+Его тоже импортируем в Header.vue
 <style lang="scss">
-    @import './styles/custom-bootstrap.scss';
-    @import '../node_modules/bootstrap/scss/bootstrap.scss';
+    @import '../styles/custom-bootstrap.scss';
+    @import '../../node_modules/bootstrap/scss/bootstrap.scss';
 </style>
+Также импортируем js необходимый для работы бутстрапа
+<script>
+import 'bootstrap'
+
+export default {
+  name: 'Header'
+}
+</script>
+Он требует установки jquery и popper, поэтому устанавливаем эти библиотеки
+npm install --save jquery popper.js
 
 5. Создаем предварительную структуру страниц приложения - шаблоны страниц добавляем в /src/views, маршрутизацию добавляем в /src/router/router.js
 Маршрутизацию реализуем с помощью Vue Router - официальной библиотеки маршрутизации для vue.js
@@ -38,6 +48,9 @@ Vue Router нужен для отображения компонентов по 
 
 6. Решаем проблему https соединения на локалхосте - добавляем в корень файл vue.config.js и конфигурируем там dev server
 https://stackoverflow.com/questions/45807049/how-to-run-vue-js-dev-serve-with-https
+настройка в хроме - chrome://flags/#allow-insecure-localhost
 
 7. Выносим переменные окружения в .env и .env.local
 https://cli.vuejs.org/ru/guide/mode-and-env.html
+
+8. Аутентификация

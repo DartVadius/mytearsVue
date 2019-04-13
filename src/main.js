@@ -12,6 +12,13 @@ Vue.filter('capitalize', CapitalizeFilter)
 
 ApiService.init()
 
+router.beforeEach((to, from, next) => {
+  if (!to.meta.isPublic && !store.state.auth.isAuthenticated) {
+    router.push('login')
+  }
+  next()
+})
+
 new Vue({
   router,
   store,

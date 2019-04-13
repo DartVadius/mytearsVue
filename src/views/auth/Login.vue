@@ -21,7 +21,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import { LOGIN } from '@/store/actionsType'
+import { LOGIN, CHECK_AUTH } from '@/store/actionsType'
 export default {
   name: 'Login',
   data () {
@@ -35,14 +35,20 @@ export default {
       errors: state => state.auth.errors
     })
   },
+  watch: {
+    errors () {
+      // console.log('x', this.errors)
+    }
+  },
   methods: {
     login (mail, password) {
-      this.$store
-        .dispatch(LOGIN, { username: mail, password: password })
-        .then((response) => {
-          console.log(response)
-          // this.$router.push({ name: 'home' })
+      this.$store.dispatch(LOGIN, { username: mail, password: password }).then(() => {
+        this.$store.dispatch(CHECK_AUTH).then((response) => {
+          if (response) {
+            this.$router.push({ name: 'posts' })
+          }
         })
+      })
     }
   }
 }
